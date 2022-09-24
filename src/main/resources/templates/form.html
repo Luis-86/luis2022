@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout::head"> </head>
+
+<body>
+   
+<body>
+
+	<header th:replace="layout/layout::header"></header>
+
+	<h1 th:text="${titulo}"></h1>
+
+	<form th:action="@{/form}" method="post" th:object="${usuario}" class="needs-validation">
+
+	<div class="row">
+
+		<div class="card col-sm-6">
+			<div class="card-header bg-info">Datos de Usuario</div>
+			<div class="card-body">
+				
+					<div class="form-group has-validation">
+						<label>Nombres*</label>
+						<input type="text" class="form-control" th:field="*{nombres}" th:errorclass="'alert-danger is-invalid'">
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('nombres')}" th:errors="*{nombres}">
+						</small>
+					</div>
+	
+					<div class="form-group has-validation">
+						<label>Apellidos*</label>
+						<input type="text" class="form-control" th:field="*{apellidos}" th:errorclass="'alert-danger is-invalid'">
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}">
+						</small>
+					</div>
+	
+					<div class="form-group has-validation">
+						<label>Correo*</label>
+						<input type="text" class="form-control" th:field="*{correo}" th:errorclass="'alert-danger is-invalid'">
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('correo')}" th:errors="*{correo}">
+						</small>
+					</div>
+	
+					<div class="form-group has-validation">
+						<label>Cedula*</label>
+						<input maxlength="10" minlength="10" type="text" class="form-control" th:field="*{cedula}" th:errorclass="'alert-danger is-invalid'">
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('cedula')}" th:errors="*{cedula}">
+						</small>
+					</div>
+			</div>
+		</div>
+
+
+		<div class="card col-sm-6">
+
+			<div class="card-header bg-secondary text-white">
+				Datos de Dirección
+			</div>
+
+			<div class="card-body">
+
+				<div class="form-group has-validation">
+					<label>Calle Principal*</label>
+					<input type="text" class="form-control" th:field="*{direccion.calle_principal}" th:errorclass="'alert-danger is-invalid'">
+					<small class="form-text text-danger" th:if="${#fields.hasErrors('direccion.calle_principal')}" th:errors="*{direccion.calle_principal}">
+					</small>
+				</div>
+				
+				<div class="form-group has-validation">
+					<label>Calle Secundaria*</label>
+					<input type="text" class="form-control" th:field="*{direccion.calle_secundaria}" th:errorclass="'alert-danger is-invalid'">
+					<small class="form-text text-danger" th:if="${#fields.hasErrors('direccion.calle_secundaria')}" th:errors="*{direccion.calle_secundaria}">
+					</small>
+				</div>
+
+				<div class="form-group has-validation">
+					<label>Referencia</label>
+					<input type="text" class="form-control" th:field="*{direccion.referencia}">
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<input type="submit" class="btn btn-primary mt-3 w-100" th:value="${usuario.id !=null} ? 'Editar Usuario': 'Guardar Usuario'">
+
+</form>
+
+
+	<footer th:replace="layout/layout::footer"></footer>
+</body>
+
+</html>
